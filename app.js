@@ -3,9 +3,9 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const app = express()
 
-app.listen(3000, () => {
-    console.log("listening")
-})
+// app.listen(3000, () => {
+//     console.log("listening")
+// })
 
 app.use(cors())
 
