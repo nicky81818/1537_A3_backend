@@ -14,7 +14,6 @@ app.use(express.json())
 const unicornModel = require("./models/unicorns")
 
 app.post('/search', async (req, res) => {
-    console.log(req.body)
     if (req.body.type == 'nameSearch') {
 
         var selectionArgument = {}
@@ -23,12 +22,10 @@ app.post('/search', async (req, res) => {
                 name: req.body.name
             }
         }
-        console.log(selectionArgument)
         var projectionArgument = {
         }
         if (req.body.projectionFilters.name == true && req.body.projectionFilters.weight == true) {
             projectionArgument = {"name": 1, "weight": 1, "_id": 0}
-            console.log(projectionArgument)
         } else if (req.body.projectionFilters.name == true && req.body.projectionFilters.weight == false) {
             projectionArgument = {"name": 1, "_id": 0}
 
@@ -40,8 +37,6 @@ app.post('/search', async (req, res) => {
         }
         const result = await unicornModel.find(
             selectionArgument, projectionArgument
-            // , projectionArgument
-            // name: req.body.name
         )
 
         res.json(result)
@@ -66,7 +61,6 @@ app.post('/search', async (req, res) => {
         }
         if (req.body.projectionFilters.name == true && req.body.projectionFilters.weight == true) {
             projectionArgument = {"name": 1, "weight": 1, "_id": 0}
-            console.log(projectionArgument)
         } else if (req.body.projectionFilters.name == true && req.body.projectionFilters.weight == false) {
             projectionArgument = {"name": 1, "_id": 0}
 
@@ -78,8 +72,6 @@ app.post('/search', async (req, res) => {
         }
         const result = await unicornModel.find(
             selectionArgument, projectionArgument
-            // , projectionArgument
-            // name: req.body.name
         )
 
         res.json(result)
@@ -87,7 +79,6 @@ app.post('/search', async (req, res) => {
     else if (req.body.type == 'foodSearch'){
         var selectionArgument = {}
         var loves_list = req.body.loves
-        console.log(loves_list.length)
         if (loves_list.length == 2) {
             selectionArgument =  {
                 $and: [
@@ -101,11 +92,9 @@ app.post('/search', async (req, res) => {
                 loves: loves_list[0]
             }
         }
-        console.log(selectionArgument)
         var projectionArgument = {}
         if (req.body.projectionFilters.name == true && req.body.projectionFilters.weight == true) {
             projectionArgument = {"name": 1, "weight": 1, "_id": 0}
-            console.log(projectionArgument)
         } else if (req.body.projectionFilters.name == true && req.body.projectionFilters.weight == false) {
             projectionArgument = {"name": 1, "_id": 0}
 
@@ -117,8 +106,6 @@ app.post('/search', async (req, res) => {
         }
         const result = await unicornModel.find(
             selectionArgument, projectionArgument
-            // , projectionArgument
-            // name: req.body.name
         )
 
         res.json(result)
